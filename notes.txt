@@ -1,0 +1,151 @@
+?1? why write using System;
+    This reduces the amount of typing required and 
+    makes the code cleaner and more readable.
+     For example, instead of writing System.Console.WriteLine(), 
+     you can simply write Console.WriteLine().
+
+
+?2? Why using namespace?
+way to organize and group related code elements such as classes, interfaces, structs, enums, and delegates. 
+
+Namespaces are independent of assemblies:
+In C#, namespaces are purely a logical concept for organizing code. They don't have any inherent relationship with assemblies (DLLs or EXEs).
+You can have multiple namespaces defined within a single assembly, or you can spread a single namespace across multiple assemblies.
+Likewise, you can have multiple assemblies that contain types within the same namespace, or you can have different namespaces within the same assembly.
+No impact on member visibility:
+Namespaces don't affect the visibility of members (fields, methods, properties, etc.) within types (classes, structs, etc.).
+Member visibility is controlled by access modifiers such as public, private, protected, internal, and protected internal.
+Whether a member is accessible or not depends on its access modifier, not on the namespace it's defined in
+
+
+
+
+first letter in class name must be capital letter, to avoid this warning 
+
+https://www.alwaysdeveloping.net/dailydrop/2022/12/02-compiler-warning/
+
+
+?3? Why when i write function with this need to create instance from class althought i created in the same class and name space put using PUBLIC modifier 
+code :
+namespace calculator_space
+{
+    class Calculator
+    {
+        // Menu: display list of all features allow user to select one of them.
+         public void Menu(bool start){
+
+            if (start == true){
+
+                // start to allow user enter number to select choice
+                Console.WriteLine("Enter your choice from list:");
+                int choice_number = Convert.ToInt16(Console.ReadLine());
+                Console.WriteLine("your choice : "+ choice_number);
+
+
+
+
+            }
+
+         }
+
+
+        static void Main(string[] args)
+        {
+          
+           // Allow user to start using calculator by press enter button
+           Console.WriteLine("Press Enter to start using the calculator ...");
+
+           while (Console.ReadKey().Key != ConsoleKey.Enter){
+                // If key not enter, continue waiting..
+                Console.WriteLine("Please, Press Enter to start using the calculator ...");
+           }
+           // once Enter is pressed, start using calculator
+           bool start = true;
+          // Create an instance of the Calculator class
+           Calculator calculator = new Calculator();
+           calculator.Menu(start);
+
+            
+        }
+    }
+}   
+
+
+and when i change modifiers to static not need to create instance 
+code:
+namespace calculator_space
+{
+    class Calculator
+    {
+        // Menu: display list of all features allow user to select one of them.
+         static void Menu(bool start){
+
+            if (start == true){
+
+                // start to allow user enter number to select choice
+                Console.WriteLine("Enter your choice from list:");
+                int choice_number = Convert.ToInt16(Console.ReadLine());
+                Console.WriteLine("your choice : "+ choice_number);
+
+
+
+
+            }
+
+         }
+
+
+        static void Main(string[] args)
+        {
+          
+           // Allow user to start using calculator by press enter button
+           Console.WriteLine("Press Enter to start using the calculator ...");
+
+           while (Console.ReadKey().Key != ConsoleKey.Enter){
+                // If key not enter, continue waiting..
+                Console.WriteLine("Please, Press Enter to start using the calculator ...");
+           }
+           // once Enter is pressed, start using calculator
+           bool start = true;
+           Menu(start);
+
+            
+        }
+    }
+}
+
+
+        , when you declare a method as static, it means that the method belongs to the class itself rather than to instances of the class. 
+        Static methods can be called directly on the class without needing to create an instance of the class.
+
+Using public:
+If you want a method to be accessible from outside the class (i.e., from other classes or from the same class when instantiated), you declare it as public.
+public methods are instance methods by default, meaning they belong to instances of the class and can be called on those instances.
+Using static:
+If a method does not rely on instance-level data and can be called without needing an instance of the class, you declare it as static.
+static methods are associated with the class itself rather than instances of the class, and they can be called directly on the class without needing an instance.
+
+
+Instances are useful in object-oriented programming (OOP) because they allow you to create multiple copies (objects) of a class, each with its own state and behavior. 
+
+
+
+
+?4?
+using switch :
+if (condition) { /*...*/ } // Executes if 'condition' is true.
+else if (condition) { /*...*/ } // Additional conditions if the above ones fail.
+else { /*...*/ } // Executes if no conditions are met.
+
+switch (variable) // Useful when comparing a single variable to many values.
+{
+    case value1:
+        // Code for value1
+        break; // Exits the switch statement.
+    // ... other cases ...
+    default:
+        // Executes if no other case matches.
+        break;
+}
+Hint: If you don’t use break or return at the end of a switch case, the next case will also be executed.
+
